@@ -1,0 +1,584 @@
+// ============================================================================
+// ota_core_full_geometry.scs
+//
+// Four signal ports: in_p/in_n are differential inputs; out_p/out_n are
+// differential outputs. Supply and control ports are vdd, vss, i_bias, reset.
+//
+// Source: Cadence Virtuoso schematic netlist for
+// PLAYGROUND_LLM/mdac_ota_001, Maestro history Interactive.2.
+// This file preserves the PDK CDF-generated device geometry parameters,
+// including diffusion area/perimeter, source/drain resistance geometry,
+// finger spacing, and layout-dependent stress/proximity fields.
+//
+// Important: these are schematic-CDF geometry estimates. This is not a
+// post-layout extracted RC/PEX netlist.
+// ============================================================================
+simulator lang=spectre
+
+subckt ota_core (vdd vss in_p in_n out_p out_n i_bias reset)
+    mld2 (cmfb2_control cmfb2_mirror_node vss vss) nch_ulvt_mac l=200n \
+        w=2u multi=1 nf=1 sd=120.0n ad=1.9e-13 as=1.9e-13 pd=4.19u \
+        ps=4.19u nrd=0.141446 nrs=0.141446 sa=95.0n sb=95.0n sa1=95.0n \
+        sa2=95.0n sa3=95.0n sa4=95.0n sb1=95.0n sb2=95.0n sb3=95.0n \
+        spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n sap=112.128n \
+        sapb=128.193n spba=140.0n spba1=149.666n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mld1 (cmfb2_mirror_node cmfb2_mirror_node vss vss) nch_ulvt_mac l=200n \
+        w=2u multi=1 nf=1 sd=120.0n ad=1.9e-13 as=1.9e-13 pd=4.19u \
+        ps=4.19u nrd=0.141446 nrs=0.141446 sa=95.0n sb=95.0n sa1=95.0n \
+        sa2=95.0n sa3=95.0n sa4=95.0n sb1=95.0n sb2=95.0n sb3=95.0n \
+        spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n sap=112.128n \
+        sapb=128.193n spba=140.0n spba1=149.666n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    msdr (cmfb2_ref_shifted n_weak_bias vss vss) nch_ulvt_mac l=300n \
+        w=7.2u multi=1 nf=3 sd=120.0n ad=5.16e-13 as=5.16e-13 pd=10.03u \
+        ps=10.03u nrd=0.048714 nrs=0.048714 sa=311.038n sb=311.038n \
+        sa1=149.434n sa2=279.516n sa3=486.501n sa4=222.595n sb1=149.434n \
+        sb2=279.516n sb3=486.501n spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=148.599n sapb=168.256n spba=171.972n \
+        spba1=188.529n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    msds (cmfb2_sense_shifted n_weak_bias vss vss) nch_ulvt_mac l=300n \
+        w=7.2u multi=1 nf=3 sd=120.0n ad=5.16e-13 as=5.16e-13 pd=10.03u \
+        ps=10.03u nrd=0.048714 nrs=0.048714 sa=311.038n sb=311.038n \
+        sa1=149.434n sa2=279.516n sa3=486.501n sa4=222.595n sb1=149.434n \
+        sb2=279.516n sb3=486.501n spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=148.599n sapb=168.256n spba=171.972n \
+        spba1=188.529n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mlc5 (cmfb1_control n_cascode_bias cmfb1_replica_mid vss) nch_ulvt_mac \
+        l=100n w=4.65u multi=1 nf=2 sd=120.0n ad=2.79e-13 as=4.4175e-13 \
+        pd=4.89u ps=9.68u nrd=0.069347 nrs=0.069347 sa=157.549n \
+        sb=157.549n sa1=120.837n sa2=154.852n sa3=243.493n sa4=146.294n \
+        sb1=120.837n sb2=154.852n sb3=243.493n spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=129.308n sapb=149.577n spba=145.751n \
+        spba1=150.476n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mlc4 (cmfb1_replica_mid cmfb1_control vss vss) nch_ulvt_mac l=300n \
+        w=3.2u multi=1 nf=2 sd=120.0n ad=1.92e-13 as=3.04e-13 pd=3.44u \
+        ps=6.78u nrd=0.104341 nrs=0.104341 sa=208.077n sb=208.077n \
+        sa1=126.862n sa2=196.235n sa3=354.131n sa4=160.935n sb1=126.862n \
+        sb2=196.235n sb3=354.131n spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=133.455n sapb=152.182n spba=161.677n \
+        spba1=177.681n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    msub_n (cmfb1_control n_weak_bias vss vss) nch_ulvt_mac l=300n w=51.5u \
+        multi=1 nf=25 sd=120.0n ad=3.1621e-12 as=3.1621e-12 pd=56.63u \
+        ps=56.63u nrd=0.007488 nrs=0.007488 sa=2.0262u sb=2.0262u \
+        sa1=333.591n sa2=1.16251u sa3=1.27262u sa4=1.3397u sb1=333.591n \
+        sb2=1.16251u sb3=1.27262u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=269.926n sapb=284.552n spba=222.877n \
+        spba1=237.773n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mcb2 (cmfb1_ref_drain stage1_cm_ref cmfb1_n_ref_source vss) \
+        nch_ulvt_mac l=100n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 \
+        as=8.6e-13 pd=12.72u ps=16.86u nrd=0.029851 nrs=0.029851 \
+        sa=367.631n sb=367.631n sa1=177.999n sa2=331.059n sa3=563.228n \
+        sa4=321.185n sb1=177.999n sb2=331.059n sb3=563.228n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=167.832n sapb=191.488n \
+        spba=158.417n spba1=162.83n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mcb1 (cmfb1_sense_drain stage1_out_n cmfb1_n_sense_source vss) \
+        nch_ulvt_mac l=100n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 \
+        as=8.6e-13 pd=12.72u ps=16.86u nrd=0.029851 nrs=0.029851 \
+        sa=367.631n sb=367.631n sa1=177.999n sa2=331.059n sa3=563.228n \
+        sa4=321.185n sb1=177.999n sb2=331.059n sb3=563.228n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=167.832n sapb=191.488n \
+        spba=158.417n spba1=162.83n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mca2 (cmfb1_ref_drain stage1_cm_ref cmfb1_p_ref_source vss) \
+        nch_ulvt_mac l=100n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 \
+        as=8.6e-13 pd=12.72u ps=16.86u nrd=0.029851 nrs=0.029851 \
+        sa=367.631n sb=367.631n sa1=177.999n sa2=331.059n sa3=563.228n \
+        sa4=321.185n sb1=177.999n sb2=331.059n sb3=563.228n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=167.832n sapb=191.488n \
+        spba=158.417n spba1=162.83n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mca1 (cmfb1_sense_drain stage1_out_p cmfb1_p_sense_source vss) \
+        nch_ulvt_mac l=100n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 \
+        as=8.6e-13 pd=12.72u ps=16.86u nrd=0.029851 nrs=0.029851 \
+        sa=367.631n sb=367.631n sa1=177.999n sa2=331.059n sa3=563.228n \
+        sa4=321.185n sb1=177.999n sb2=331.059n sb3=563.228n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=167.832n sapb=191.488n \
+        spba=158.417n spba1=162.83n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mtcb (cmfb1_tail_n n_weak_bias vss vss) nch_ulvt_mac l=300n w=32.0u \
+        multi=1 nf=16 sd=120.0n ad=1.92e-12 as=2.06e-12 pd=33.92u \
+        ps=38.06u nrd=0.011580 nrs=0.011580 sa=1.38404u sb=1.38404u \
+        sa1=283.337n sa2=893.095n sa3=1.07663u sa4=909.618n sb1=283.337n \
+        sb2=893.095n sb3=1.07663u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=237.275n sapb=254.752n spba=213.705n \
+        spba1=229.647n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mtca (cmfb1_tail_p n_weak_bias vss vss) nch_ulvt_mac l=300n w=32.0u \
+        multi=1 nf=16 sd=120.0n ad=1.92e-12 as=2.06e-12 pd=33.92u \
+        ps=38.06u nrd=0.011580 nrs=0.011580 sa=1.38404u sb=1.38404u \
+        sa1=283.337n sa2=893.095n sa3=1.07663u sa4=909.618n sb1=283.337n \
+        sb2=893.095n sb3=1.07663u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=237.275n sapb=254.752n spba=213.705n \
+        spba1=229.647n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mrst (stage1_out_p reset stage1_out_n vss) nch_ulvt_mac l=30n w=6u \
+        multi=1 nf=3 sd=100n ad=3.5e-13 as=3.5e-13 pd=8.35u ps=8.35u \
+        nrd=0.068406 nrs=0.068406 sa=147.042n sb=147.042n sa1=107.158n \
+        sa2=144.915n sa3=241.797n sa4=141.98n sb1=107.158n sb2=144.915n \
+        sb3=241.797n spa=100n spa1=100n spa2=100n spa3=100n sap=113.519n \
+        sapb=134.009n spba=115.715n spba1=117.043n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mn2b (out_n stage1_out_n vss vss) nch_ulvt_mac l=100n w=43.0u multi=1 \
+        nf=20 sd=120.0n ad=2.58e-12 as=2.7305e-12 pd=45.4u ps=49.84u \
+        nrd=0.008828 nrs=0.008828 sa=962.561n sb=962.561n sa1=270.71n \
+        sa2=694.108n sa3=973.22n sa4=828.15n sb1=270.71n sb2=694.108n \
+        sb3=973.22n spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n \
+        sap=229.978n sapb=251.847n spba=165.365n spba1=169.423n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mn2a (out_p stage1_out_p vss vss) nch_ulvt_mac l=100n w=43.0u multi=1 \
+        nf=20 sd=120.0n ad=2.58e-12 as=2.7305e-12 pd=45.4u ps=49.84u \
+        nrd=0.008828 nrs=0.008828 sa=962.561n sb=962.561n sa1=270.71n \
+        sa2=694.108n sa3=973.22n sa4=828.15n sb1=270.71n sb2=694.108n \
+        sb3=973.22n spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n \
+        sap=229.978n sapb=251.847n spba=165.365n spba1=169.423n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    msnkb (pboost_n_sf_out n_weak_bias vss vss) nch_ulvt_mac l=300n \
+        w=64.0u multi=1 nf=32 sd=120.0n ad=3.84e-12 as=3.98e-12 pd=67.84u \
+        ps=71.98u nrd=0.005850 nrs=0.005850 sa=2.50035u sb=2.50035u \
+        sa1=364.774n sa2=1.33895u sa3=1.39209u sa4=1.66219u sb1=364.774n \
+        sb2=1.33895u sb3=1.39209u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=290.032n sapb=302.508n spba=227.313n spba1=241.55n \
+        dfm_flag=0 spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 \
+        spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    msfb (vdd pboost_n_amp_out pboost_n_sf_out vss) nch_ulvt_mac l=60n \
+        w=3u multi=1 nf=2 sd=100n ad=1.5e-13 as=2.25e-13 pd=3.2u ps=6.3u \
+        nrd=0.129227 nrs=0.129227 sa=120.405n sb=120.405n sa1=94.7938n \
+        sa2=119.275n sa3=185.392n sa4=114.004n sb1=94.7938n sb2=119.275n \
+        sb3=185.392n spa=100n spa1=100n spa2=100n spa3=100n sap=105.579n \
+        sapb=136.932n spba=125.537n spba1=128.066n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    meab2 (pboost_n_mirror_node fold_voltage_ref pboost_n_tail vss) \
+        nch_ulvt_mac l=150.0n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 \
+        as=8.6e-13 pd=12.72u ps=16.86u nrd=0.029851 nrs=0.029851 \
+        sa=423.263n sb=423.263n sa1=182.794n sa2=369.308n sa3=612.32n \
+        sa4=344.641n sb1=182.794n sb2=369.308n sb3=612.32n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=171.808n sapb=196.169n \
+        spba=169.684n spba1=176.728n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    meab1 (pboost_n_amp_out fold_node_n pboost_n_tail vss) nch_ulvt_mac \
+        l=150.0n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 as=8.6e-13 \
+        pd=12.72u ps=16.86u nrd=0.029851 nrs=0.029851 sa=423.263n \
+        sb=423.263n sa1=182.794n sa2=369.308n sa3=612.32n sa4=344.641n \
+        sb1=182.794n sb2=369.308n sb3=612.32n spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=171.808n sapb=196.169n spba=169.684n \
+        spba1=176.728n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mteab (pboost_n_tail n_weak_bias vss vss) nch_ulvt_mac l=300n w=32.0u \
+        multi=1 nf=16 sd=120.0n ad=1.92e-12 as=2.06e-12 pd=33.92u \
+        ps=38.06u nrd=0.011580 nrs=0.011580 sa=1.38404u sb=1.38404u \
+        sa1=283.337n sa2=893.095n sa3=1.07663u sa4=909.618n sb1=283.337n \
+        sb2=893.095n sb3=1.07663u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=237.275n sapb=254.752n spba=213.705n \
+        spba1=229.647n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    msnka (pboost_p_sf_out n_weak_bias vss vss) nch_ulvt_mac l=300n \
+        w=64.0u multi=1 nf=32 sd=120.0n ad=3.84e-12 as=3.98e-12 pd=67.84u \
+        ps=71.98u nrd=0.005850 nrs=0.005850 sa=2.50035u sb=2.50035u \
+        sa1=364.774n sa2=1.33895u sa3=1.39209u sa4=1.66219u sb1=364.774n \
+        sb2=1.33895u sb3=1.39209u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=290.032n sapb=302.508n spba=227.313n spba1=241.55n \
+        dfm_flag=0 spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 \
+        spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    msfa (vdd pboost_p_amp_out pboost_p_sf_out vss) nch_ulvt_mac l=60n \
+        w=3u multi=1 nf=2 sd=100n ad=1.5e-13 as=2.25e-13 pd=3.2u ps=6.3u \
+        nrd=0.129227 nrs=0.129227 sa=120.405n sb=120.405n sa1=94.7938n \
+        sa2=119.275n sa3=185.392n sa4=114.004n sb1=94.7938n sb2=119.275n \
+        sb3=185.392n spa=100n spa1=100n spa2=100n spa3=100n sap=105.579n \
+        sapb=136.932n spba=125.537n spba1=128.066n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    meaa2 (pboost_p_mirror_node fold_voltage_ref pboost_p_tail vss) \
+        nch_ulvt_mac l=150.0n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 \
+        as=8.6e-13 pd=12.72u ps=16.86u nrd=0.029851 nrs=0.029851 \
+        sa=423.263n sb=423.263n sa1=182.794n sa2=369.308n sa3=612.32n \
+        sa4=344.641n sb1=182.794n sb2=369.308n sb3=612.32n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=171.808n sapb=196.169n \
+        spba=169.684n spba1=176.728n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    meaa1 (pboost_p_amp_out fold_node_p pboost_p_tail vss) nch_ulvt_mac \
+        l=150.0n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 as=8.6e-13 \
+        pd=12.72u ps=16.86u nrd=0.029851 nrs=0.029851 sa=423.263n \
+        sb=423.263n sa1=182.794n sa2=369.308n sa3=612.32n sa4=344.641n \
+        sb1=182.794n sb2=369.308n sb3=612.32n spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=171.808n sapb=196.169n spba=169.684n \
+        spba1=176.728n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mteaa (pboost_p_tail n_weak_bias vss vss) nch_ulvt_mac l=300n w=32.0u \
+        multi=1 nf=16 sd=120.0n ad=1.92e-12 as=2.06e-12 pd=33.92u \
+        ps=38.06u nrd=0.011580 nrs=0.011580 sa=1.38404u sb=1.38404u \
+        sa1=283.337n sa2=893.095n sa3=1.07663u sa4=909.618n sb1=283.337n \
+        sb2=893.095n sb3=1.07663u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=237.275n sapb=254.752n spba=213.705n \
+        spba1=229.647n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mnsb (n_cascode_source_n cmfb1_sink_gate vss vss) nch_ulvt_mac l=300n \
+        w=80u multi=1 nf=40 sd=120.0n ad=4.8e-12 as=4.94e-12 pd=84.8u \
+        ps=88.94u nrd=0.004690 nrs=0.004690 sa=3.02363u sb=3.02363u \
+        sa1=395.257n sa2=1.51799u sa3=1.50785u sa4=2.02173u sb1=395.257n \
+        sb2=1.51799u sb3=1.50785u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=309.583n sapb=319.714n spba=230.899n \
+        spba1=244.525n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mnsa (n_cascode_source_p cmfb1_sink_gate vss vss) nch_ulvt_mac l=300n \
+        w=80u multi=1 nf=40 sd=120.0n ad=4.8e-12 as=4.94e-12 pd=84.8u \
+        ps=88.94u nrd=0.004690 nrs=0.004690 sa=3.02363u sb=3.02363u \
+        sa1=395.257n sa2=1.51799u sa3=1.50785u sa4=2.02173u sb1=395.257n \
+        sb2=1.51799u sb3=1.50785u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=309.583n sapb=319.714n spba=230.899n \
+        spba1=244.525n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mncb (stage1_out_n n_cascode_bias n_cascode_source_n vss) nch_ulvt_mac \
+        l=100n w=120.00000u multi=1 nf=60 sd=120.0n ad=7.2e-12 as=7.34e-12 \
+        pd=127.2u ps=131.34u nrd=0.003135 nrs=0.003135 sa=2.37707u \
+        sb=2.37707u sa1=394.838n sa2=1.2745u sa3=1.45974u sa4=2.05928u \
+        sb1=394.838n sb2=1.2745u sb3=1.45974u spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=311.486n sapb=324.155n spba=167.799n \
+        spba1=171.696n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mnca (stage1_out_p n_cascode_bias n_cascode_source_p vss) nch_ulvt_mac \
+        l=100n w=120.00000u multi=1 nf=60 sd=120.0n ad=7.2e-12 as=7.34e-12 \
+        pd=127.2u ps=131.34u nrd=0.003135 nrs=0.003135 sa=2.37707u \
+        sb=2.37707u sa1=394.838n sa2=1.2745u sa3=1.45974u sa4=2.05928u \
+        sb1=394.838n sb2=1.2745u sb3=1.45974u spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=311.486n sapb=324.155n spba=167.799n \
+        spba1=171.696n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    m1b (fold_node_n in_n input_pair_source input_pair_source) \
+        nch_ulvt_mac l=200n w=90u multi=1 nf=45 sd=120.0n ad=5.47e-12 \
+        as=5.47e-12 pd=97.47u ps=97.47u nrd=0.004173 nrs=0.004173 \
+        sa=2.60877u sb=2.60877u sa1=385.722n sa2=1.36485u sa3=1.46501u \
+        sa4=1.97135u sb1=385.722n sb2=1.36485u sb3=1.46501u spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=306.991n sapb=324.115n \
+        spba=204.12n spba1=211.91n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    m1a (fold_node_p in_p input_pair_source input_pair_source) \
+        nch_ulvt_mac l=200n w=90u multi=1 nf=45 sd=120.0n ad=5.47e-12 \
+        as=5.47e-12 pd=97.47u ps=97.47u nrd=0.004173 nrs=0.004173 \
+        sa=2.60877u sb=2.60877u sa1=385.722n sa2=1.36485u sa3=1.46501u \
+        sa4=1.97135u sb1=385.722n sb2=1.36485u sb3=1.46501u spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=306.991n sapb=324.115n \
+        spba=204.12n spba1=211.91n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mtail (input_pair_source n_weak_bias vss vss) nch_ulvt_mac l=300n \
+        w=16.0u multi=108 nf=8 sd=120.0n ad=9.6e-13 as=1.1e-12 pd=16.96u \
+        ps=21.1u nrd=0.022690 nrs=0.022690 sa=759.809n sb=759.809n \
+        sa1=218.709n sa2=575.851n sa3=812.489n sa4=502.736n sb1=218.709n \
+        sb2=575.851n sb3=812.489n spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=194.785n sapb=214.54n spba=197.214n spba1=214.096n \
+        dfm_flag=0 spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 \
+        spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mrep2 (stage1_cm_ref stage1_cm_ref vss vss) nch_ulvt_mac l=100n \
+        w=2.15u multi=1 nf=1 sd=120.0n ad=2.0425e-13 as=2.0425e-13 \
+        pd=4.49u ps=4.49u nrd=0.134222 nrs=0.134222 sa=95.0n sb=95.0n \
+        sa1=95.0n sa2=95.0n sa3=95.0n sa4=95.0n sb1=95.0n sb2=95.0n \
+        sb3=95.0n spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n \
+        sap=112.128n sapb=128.193n spba=134.907n spba1=139.642n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mbnc1 (n_cascode_bias n_cascode_bias n_cascode_bias_source vss) \
+        nch_ulvt_mac l=100n w=6.9u multi=1 nf=3 sd=120.0n ad=4.945e-13 \
+        as=4.945e-13 pd=9.63u ps=9.63u nrd=0.051181 nrs=0.051181 \
+        sa=214.418n sb=214.418n sa1=139.427n sa2=206.362n sa3=354.132n \
+        sa4=193.273n sb1=139.427n sb2=206.362n sb3=354.132n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=141.8n sapb=163.793n \
+        spba=151.171n spba1=155.809n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mbn3 (fold_ref_dense n_weak_bias vss vss) nch_ulvt_mac l=300n w=48.0u \
+        multi=1 nf=24 sd=120.0n ad=2.88e-12 as=3.02e-12 pd=50.88u \
+        ps=55.02u nrd=0.007773 nrs=0.007773 sa=1.95692u sb=1.95692u \
+        sa1=328.677n sa2=1.13534u sa3=1.25367u sa4=1.29289u sb1=328.677n \
+        sb2=1.13534u sb3=1.25367u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=266.748n sapb=281.687n spba=222.098n \
+        spba1=237.099n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mbn2 (p_top_bias n_weak_bias vss vss) nch_ulvt_mac l=300n w=16.0u \
+        multi=1 nf=8 sd=120.0n ad=9.6e-13 as=1.1e-12 pd=16.96u ps=21.1u \
+        nrd=0.022690 nrs=0.022690 sa=759.809n sb=759.809n sa1=218.709n \
+        sa2=575.851n sa3=812.489n sa4=502.736n sb1=218.709n sb2=575.851n \
+        sb3=812.489n spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n \
+        sap=194.785n sapb=214.54n spba=197.214n spba1=214.096n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mbnw2 (p_weak_bias i_bias vss vss) nch_ulvt_mac l=300n w=4u multi=1 \
+        nf=2 sd=120.0n ad=2.4e-13 as=3.8e-13 pd=4.24u ps=8.38u \
+        nrd=0.080934 nrs=0.080934 sa=208.077n sb=208.077n sa1=126.862n \
+        sa2=196.235n sa3=354.131n sa4=160.935n sb1=126.862n sb2=196.235n \
+        sb3=354.131n spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n \
+        sap=133.455n sapb=152.182n spba=161.677n spba1=177.681n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mbdw (n_weak_bias n_weak_bias vss vss) nch_ulvt_mac l=300n w=16.0u \
+        multi=1 nf=8 sd=120.0n ad=9.6e-13 as=1.1e-12 pd=16.96u ps=21.1u \
+        nrd=0.022690 nrs=0.022690 sa=759.809n sb=759.809n sa1=218.709n \
+        sa2=575.851n sa3=812.489n sa4=502.736n sb1=218.709n sb2=575.851n \
+        sb3=812.489n spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n \
+        sap=194.785n sapb=214.54n spba=197.214n spba1=214.096n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mbn1 (p_bias_ref i_bias vss vss) nch_ulvt_mac l=300n w=4u multi=1 nf=2 \
+        sd=120.0n ad=2.4e-13 as=3.8e-13 pd=4.24u ps=8.38u nrd=0.080934 \
+        nrs=0.080934 sa=208.077n sb=208.077n sa1=126.862n sa2=196.235n \
+        sa3=354.131n sa4=160.935n sb1=126.862n sb2=196.235n sb3=354.131n \
+        spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n sap=133.455n \
+        sapb=152.182n spba=161.677n spba1=177.681n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mbd0 (i_bias i_bias vss vss) nch_ulvt_mac l=300n w=4u multi=1 nf=2 \
+        sd=120.0n ad=2.4e-13 as=3.8e-13 pd=4.24u ps=8.38u nrd=0.080934 \
+        nrs=0.080934 sa=208.077n sb=208.077n sa1=126.862n sa2=196.235n \
+        sa3=354.131n sa4=160.935n sb1=126.862n sb2=196.235n sb3=354.131n \
+        spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n sap=133.455n \
+        sapb=152.182n spba=161.677n spba1=177.681n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mc2b (cmfb2_control cmfb2_ref_shifted cmfb2_tail vdd) pch_ulvt_mac \
+        l=100n w=10u multi=1 nf=5 sd=120.0n ad=6.7e-13 as=6.7e-13 \
+        pd=12.67u ps=12.67u nrd=0.012326 nrs=0.012326 sa=318.636n \
+        sb=318.636n sa1=166.951n sa2=293.256n sa3=506.826n sa4=280.098n \
+        sb1=166.951n sb2=293.256n sb3=506.826n spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=160.373n sapb=183.757n spba=156.766n \
+        spba1=161.243n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mc2a (cmfb2_mirror_node cmfb2_sense_shifted cmfb2_tail vdd) \
+        pch_ulvt_mac l=100n w=10u multi=1 nf=5 sd=120.0n ad=6.7e-13 \
+        as=6.7e-13 pd=12.67u ps=12.67u nrd=0.012326 nrs=0.012326 \
+        sa=318.636n sb=318.636n sa1=166.951n sa2=293.256n sa3=506.826n \
+        sa4=280.098n sb1=166.951n sb2=293.256n sb3=506.826n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=160.373n sapb=183.757n \
+        spba=156.766n spba1=161.243n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mtp2 (cmfb2_tail p_weak_bias vdd vdd) pch_ulvt_mac l=300n w=48.0u \
+        multi=2 nf=24 sd=120.0n ad=2.88e-12 as=3.02e-12 pd=50.88u \
+        ps=55.02u nrd=0.002625 nrs=0.002625 sa=1.95692u sb=1.95692u \
+        sa1=328.677n sa2=1.13534u sa3=1.25367u sa4=1.29289u sb1=328.677n \
+        sb2=1.13534u sb3=1.25367u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=266.748n sapb=281.687n spba=222.098n \
+        spba1=237.099n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    msub_p (cmfb1_control p_top_bias vdd vdd) pch_ulvt_mac l=300n w=2.7u \
+        multi=1 nf=1 sd=120.0n ad=2.565e-13 as=2.565e-13 pd=5.59u ps=5.59u \
+        nrd=0.041742 nrs=0.041742 sa=95.0n sb=95.0n sa1=95.0n sa2=95.0n \
+        sa3=95.0n sa4=95.0n sb1=95.0n sb2=95.0n sb3=95.0n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=112.128n sapb=128.193n \
+        spba=144.914n spba1=159.687n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mlc3 (cmfb1_control cmfb1_sense_drain vdd vdd) pch_ulvt_mac l=200n \
+        w=3u multi=1 nf=2 sd=120.0n ad=1.8e-13 as=2.85e-13 pd=3.24u \
+        ps=6.38u nrd=0.041293 nrs=0.041293 sa=182.887n sb=182.887n \
+        sa1=124.009n sa2=176.371n sa3=304.815n sa4=155.043n sb1=124.009n \
+        sb2=176.371n sb3=304.815n spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=131.818n sapb=151.71n spba=155.053n spba1=165.242n \
+        dfm_flag=0 spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 \
+        spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mlc2 (cmfb1_ref_drain cmfb1_ref_drain vdd vdd) pch_ulvt_mac l=200n \
+        w=6u multi=1 nf=4 sd=120.0n ad=3.6e-13 as=4.65e-13 pd=6.48u \
+        ps=9.62u nrd=0.021364 nrs=0.021364 sa=337.955n sb=337.955n \
+        sa1=161.159n sa2=304.004n sa3=522.185n sa4=263.558n sb1=161.159n \
+        sb2=304.004n sb3=522.185n spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=157.166n sapb=179.592n spba=169.922n \
+        spba1=180.209n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mlc1 (cmfb1_sense_drain cmfb1_sense_drain vdd vdd) pch_ulvt_mac l=200n \
+        w=6u multi=1 nf=4 sd=120.0n ad=3.6e-13 as=4.65e-13 pd=6.48u \
+        ps=9.62u nrd=0.021364 nrs=0.021364 sa=337.955n sb=337.955n \
+        sa1=161.159n sa2=304.004n sa3=522.185n sa4=263.558n sb1=161.159n \
+        sb2=304.004n sb3=522.185n spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=157.166n sapb=179.592n spba=169.922n \
+        spba1=180.209n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mp2b (out_n cmfb2_load_gate vdd vdd) pch_ulvt_mac l=150.0n w=52.0u \
+        multi=1 nf=26 sd=120.0n ad=3.12e-12 as=3.26e-12 pd=55.12u \
+        ps=59.26u nrd=0.002424 nrs=0.002424 sa=1.41856u sb=1.41856u \
+        sa1=307.373n sa2=907.732n sa3=1.14479u sa4=1.13677u sb1=307.373n \
+        sb2=907.732n sb3=1.14479u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=255.557n sapb=278.411n spba=184.259n \
+        spba1=190.263n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mp2a (out_p cmfb2_load_gate vdd vdd) pch_ulvt_mac l=150.0n w=52.0u \
+        multi=1 nf=26 sd=120.0n ad=3.12e-12 as=3.26e-12 pd=55.12u \
+        ps=59.26u nrd=0.002424 nrs=0.002424 sa=1.41856u sb=1.41856u \
+        sa1=307.373n sa2=907.732n sa3=1.14479u sa4=1.13677u sb1=307.373n \
+        sb2=907.732n sb3=1.14479u spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=255.557n sapb=278.411n spba=184.259n \
+        spba1=190.263n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mlab2 (pboost_n_amp_out pboost_n_mirror_node vdd vdd) pch_ulvt_mac \
+        l=500n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 as=8.6e-13 \
+        pd=12.72u ps=16.86u nrd=0.010319 nrs=0.010319 sa=809.414n \
+        sb=809.414n sa1=212.732n sa2=598.221n sa3=787.595n sa4=434.879n \
+        sb1=212.732n sb2=598.221n sb3=787.595n spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=185.616n sapb=200.444n spba=206.029n \
+        spba1=237.945n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mlab1 (pboost_n_mirror_node pboost_n_mirror_node vdd vdd) pch_ulvt_mac \
+        l=500n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 as=8.6e-13 \
+        pd=12.72u ps=16.86u nrd=0.010319 nrs=0.010319 sa=809.414n \
+        sb=809.414n sa1=212.732n sa2=598.221n sa3=787.595n sa4=434.879n \
+        sb1=212.732n sb2=598.221n sb3=787.595n spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=185.616n sapb=200.444n spba=206.029n \
+        spba1=237.945n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mlaa2 (pboost_p_amp_out pboost_p_mirror_node vdd vdd) pch_ulvt_mac \
+        l=500n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 as=8.6e-13 \
+        pd=12.72u ps=16.86u nrd=0.010319 nrs=0.010319 sa=809.414n \
+        sb=809.414n sa1=212.732n sa2=598.221n sa3=787.595n sa4=434.879n \
+        sb1=212.732n sb2=598.221n sb3=787.595n spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=185.616n sapb=200.444n spba=206.029n \
+        spba1=237.945n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mlaa1 (pboost_p_mirror_node pboost_p_mirror_node vdd vdd) pch_ulvt_mac \
+        l=500n w=12.0u multi=1 nf=6 sd=120.0n ad=7.2e-13 as=8.6e-13 \
+        pd=12.72u ps=16.86u nrd=0.010319 nrs=0.010319 sa=809.414n \
+        sb=809.414n sa1=212.732n sa2=598.221n sa3=787.595n sa4=434.879n \
+        sb1=212.732n sb2=598.221n sb3=787.595n spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=185.616n sapb=200.444n spba=206.029n \
+        spba1=237.945n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mpcb (stage1_out_n p_cascode_gate_n fold_node_n fold_node_n) \
+        pch_ulvt_mac l=150.0n w=80u multi=1 nf=40 sd=120.0n ad=4.8e-12 \
+        as=4.94e-12 pd=84.8u ps=88.94u nrd=0.001579 nrs=0.001579 \
+        sa=2.03059u sb=2.03059u sa1=357.149n sa2=1.15428u sa3=1.34012u \
+        sa4=1.63474u sb1=357.149n sb2=1.15428u sb3=1.34012u spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=288.428n sapb=308.644n \
+        spba=186.406n spba1=192.184n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mpca (stage1_out_p p_cascode_gate_p fold_node_p fold_node_p) \
+        pch_ulvt_mac l=150.0n w=80u multi=1 nf=40 sd=120.0n ad=4.8e-12 \
+        as=4.94e-12 pd=84.8u ps=88.94u nrd=0.001579 nrs=0.001579 \
+        sa=2.03059u sb=2.03059u sa1=357.149n sa2=1.15428u sa3=1.34012u \
+        sa4=1.63474u sb1=357.149n sb2=1.15428u sb3=1.34012u spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=288.428n sapb=308.644n \
+        spba=186.406n spba1=192.184n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mtpb (fold_node_n p_top_bias vdd vdd) pch_ulvt_mac l=300n w=900n \
+        multi=76 nf=1 sd=120.0n ad=8.55e-14 as=8.55e-14 pd=1.99u ps=1.99u \
+        nrd=0.125292 nrs=0.125292 sa=95.0n sb=95.0n sa1=95.0n sa2=95.0n \
+        sa3=95.0n sa4=95.0n sb1=95.0n sb2=95.0n sb3=95.0n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=112.128n sapb=128.193n \
+        spba=144.914n spba1=159.687n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mtpa (fold_node_p p_top_bias vdd vdd) pch_ulvt_mac l=300n w=900n \
+        multi=76 nf=1 sd=120.0n ad=8.55e-14 as=8.55e-14 pd=1.99u ps=1.99u \
+        nrd=0.125292 nrs=0.125292 sa=95.0n sb=95.0n sa1=95.0n sa2=95.0n \
+        sa3=95.0n sa4=95.0n sb1=95.0n sb2=95.0n sb3=95.0n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=112.128n sapb=128.193n \
+        spba=144.914n spba1=159.687n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mbps1 (stage1_cm_ref p_bias_ref vdd vdd) pch_ulvt_mac l=300n w=21.0u \
+        multi=1 nf=10 sd=120.0n ad=1.26e-12 as=1.407e-12 pd=22.2u \
+        ps=26.54u nrd=0.005913 nrs=0.005913 sa=923.088n sb=923.088n \
+        sa1=237.906n sa2=666.429n sa3=893.121n sa4=607.711n sb1=237.906n \
+        sb2=666.429n sb3=893.121n spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=207.469n sapb=226.739n spba=202.746n \
+        spba1=219.434n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mbps0 (n_cascode_bias p_weak_bias vdd vdd) pch_ulvt_mac l=300n w=24.0u \
+        multi=1 nf=12 sd=120.0n ad=1.44e-12 as=1.58e-12 pd=25.44u \
+        ps=29.58u nrd=0.005219 nrs=0.005219 sa=1.08084u sb=1.08084u \
+        sa1=254.689n sa2=748.206n sa3=961.894n sa4=710.212n sb1=254.689n \
+        sb2=748.206n sb3=961.894n spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=218.513n sapb=237.219n spba=207.127n \
+        spba1=223.577n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mprep2 (fold_ref_dense fold_ref_dense fold_voltage_ref vdd) \
+        pch_ulvt_mac l=100n w=4u multi=1 nf=2 sd=120.0n ad=2.4e-13 \
+        as=3.8e-13 pd=4.24u ps=8.38u nrd=0.029602 nrs=0.029602 sa=157.549n \
+        sb=157.549n sa1=120.837n sa2=154.852n sa3=243.493n sa4=146.294n \
+        sb1=120.837n sb2=154.852n sb3=243.493n spa=120.0n spa1=120.0n \
+        spa2=120.0n spa3=120.0n sap=129.308n sapb=149.577n spba=145.751n \
+        spba1=150.476n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mbps_r (fold_voltage_ref p_bias_ref vdd vdd) pch_ulvt_mac l=300n w=6u \
+        multi=1 nf=3 sd=120.0n ad=4.3e-13 as=4.3e-13 pd=8.43u ps=8.43u \
+        nrd=0.020176 nrs=0.020176 sa=311.038n sb=311.038n sa1=149.434n \
+        sa2=279.516n sa3=486.501n sa4=222.595n sb1=149.434n sb2=279.516n \
+        sb3=486.501n spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n \
+        sap=148.599n sapb=168.256n spba=171.972n spba1=188.529n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mprep1 (fold_ref_dense fold_ref_dense vdd vdd) pch_ulvt_mac l=300n \
+        w=1.32u multi=1 nf=1 sd=120.0n ad=1.254e-13 as=1.254e-13 pd=2.83u \
+        ps=2.83u nrd=0.083217 nrs=0.083217 sa=95.0n sb=95.0n sa1=95.0n \
+        sa2=95.0n sa3=95.0n sa4=95.0n sb1=95.0n sb2=95.0n sb3=95.0n \
+        spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n sap=112.128n \
+        sapb=128.193n spba=144.914n spba1=159.687n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mbpd1 (p_top_bias p_top_bias vdd vdd) pch_ulvt_mac l=300n w=900n \
+        multi=1 nf=1 sd=120.0n ad=8.55e-14 as=8.55e-14 pd=1.99u ps=1.99u \
+        nrd=0.125292 nrs=0.125292 sa=95.0n sb=95.0n sa1=95.0n sa2=95.0n \
+        sa3=95.0n sa4=95.0n sb1=95.0n sb2=95.0n sb3=95.0n spa=120.0n \
+        spa1=120.0n spa2=120.0n spa3=120.0n sap=112.128n sapb=128.193n \
+        spba=144.914n spba1=159.687n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mbpdw (p_weak_bias p_weak_bias vdd vdd) pch_ulvt_mac l=300n w=24.0u \
+        multi=1 nf=12 sd=120.0n ad=1.44e-12 as=1.58e-12 pd=25.44u \
+        ps=29.58u nrd=0.005219 nrs=0.005219 sa=1.08084u sb=1.08084u \
+        sa1=254.689n sa2=748.206n sa3=961.894n sa4=710.212n sb1=254.689n \
+        sb2=748.206n sb3=961.894n spa=120.0n spa1=120.0n spa2=120.0n \
+        spa3=120.0n sap=218.513n sapb=237.219n spba=207.127n \
+        spba1=223.577n dfm_flag=0 spmt=1.11111e+15 spomt=0 \
+        spomt1=1.11111e+60 spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    mbpsw (n_weak_bias p_bias_ref vdd vdd) pch_ulvt_mac l=300n w=6u \
+        multi=1 nf=3 sd=120.0n ad=4.3e-13 as=4.3e-13 pd=8.43u ps=8.43u \
+        nrd=0.020176 nrs=0.020176 sa=311.038n sb=311.038n sa1=149.434n \
+        sa2=279.516n sa3=486.501n sa4=222.595n sb1=149.434n sb2=279.516n \
+        sb3=486.501n spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n \
+        sap=148.599n sapb=168.256n spba=171.972n spba1=188.529n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    mbpd0 (p_bias_ref p_bias_ref vdd vdd) pch_ulvt_mac l=300n w=6u multi=1 \
+        nf=3 sd=120.0n ad=4.3e-13 as=4.3e-13 pd=8.43u ps=8.43u \
+        nrd=0.020176 nrs=0.020176 sa=311.038n sb=311.038n sa1=149.434n \
+        sa2=279.516n sa3=486.501n sa4=222.595n sb1=149.434n sb2=279.516n \
+        sb3=486.501n spa=120.0n spa1=120.0n spa2=120.0n spa3=120.0n \
+        sap=148.599n sapb=168.256n spba=171.972n spba1=188.529n dfm_flag=0 \
+        spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 spmb=1.11111e+15 \
+        spomb=0 spomb1=1.11111e+60
+    rdb (cmfb2_ref_shifted vss) resistor r=40K
+    rda (vdd cmfb2_ref_shifted) resistor r=40K
+    rsb (out_n cmfb2_sense_shifted) resistor r=40K
+    rsa (out_p cmfb2_sense_shifted) resistor r=40K
+    rdgd (cmfb1_n_ref_source cmfb1_tail_n) resistor r=1
+    rdgc (cmfb1_n_sense_source cmfb1_tail_n) resistor r=1
+    rdgb (cmfb1_p_ref_source cmfb1_tail_p) resistor r=1
+    rdga (cmfb1_p_sense_source cmfb1_tail_p) resistor r=1
+    rzb (out_n miller_zero_n) resistor r=130
+    rza (out_p miller_zero_p) resistor r=130
+    rbnc (n_cascode_bias_source vss) resistor r=9.5K
+    cdbnc (n_cascode_bias vss) capacitor c=200.0f
+    cdvref (stage1_cm_ref vss) capacitor c=300.0f
+    cdprep (fold_voltage_ref vdd) capacitor c=300.0f
+    cdvbhd (p_top_bias vdd) capacitor c=500.0f
+    cdvbp (p_bias_ref vdd) capacitor c=500.0f
+    cdvbn (i_bias vss) capacitor c=500.0f
+    cm2b (out_n cmfb2_control) capacitor c=220f
+    cm2a (out_p cmfb2_control) capacitor c=220f
+    ccm2 (cmfb2_control vdd) capacitor c=200.0f
+    csb (out_n cmfb2_sense_shifted) capacitor c=100f
+    csa (out_p cmfb2_sense_shifted) capacitor c=100f
+    cm1b (stage1_out_n cmfb1_control) capacitor c=400f
+    cm1a (stage1_out_p cmfb1_control) capacitor c=400f
+    ccm1 (cmfb1_control vss) capacitor c=100f
+    ccb (miller_zero_n stage1_out_n) capacitor c=950.00f
+    cca (miller_zero_p stage1_out_p) capacitor c=950.00f
+    cbstb (pboost_n_amp_out vdd) capacitor c=130f
+    cbsta (pboost_p_amp_out vdd) capacitor c=130f
+    ipcm2 (cmfb2_control cmfb2_load_gate) iprobe
+    ipcm1 (cmfb1_control cmfb1_sink_gate) iprobe
+    ipbstb (pboost_n_sf_out p_cascode_gate_n) iprobe
+    ipbsta (pboost_p_sf_out p_cascode_gate_p) iprobe
+ends ota_core

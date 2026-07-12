@@ -1,0 +1,148 @@
+// Standalone AC, STB, noise, and operating-point deck
+// Default condition: TT, 27 C, VDD = 0.9 V
+simulator lang=spectre
+global 0
+parameters vddval=0.9 vcmival=0.66 vres=0 vswing=0 csv=3.7p cfv=462.5f clv=500f rfv=80k rsv=10k
+
+// PDK setup:
+// Replace only the path inside quotation marks with the corresponding master
+// Spectre model deck in your local TSMC 28 nm PDK installation. The selected
+// file must define the five sections used below.
+include "/path/to/your/TSMC28_PDK/models/spectre/crn28ull_1d8_elk_v1d8_2p2_shrink0d9_embedded_usage.scs" section=pre_simu
+include "/path/to/your/TSMC28_PDK/models/spectre/crn28ull_1d8_elk_v1d8_2p2_shrink0d9_embedded_usage.scs" section=noise_worst
+include "/path/to/your/TSMC28_PDK/models/spectre/crn28ull_1d8_elk_v1d8_2p2_shrink0d9_embedded_usage.scs" section=TTMacro_MOS_MOSCAP
+include "/path/to/your/TSMC28_PDK/models/spectre/crn28ull_1d8_elk_v1d8_2p2_shrink0d9_embedded_usage.scs" section=TT_RES_BIP_DIO_DISRES
+include "/path/to/your/TSMC28_PDK/models/spectre/crn28ull_1d8_elk_v1d8_2p2_shrink0d9_embedded_usage.scs" section=TT_MOM
+
+// ======================= TB ========================
+// ============================================================================
+// AC/STB/noise testbench with three independent DUT instances:
+//  xcl : Closed-loop MDAC amplification configuration. The summing nodes are
+//        DC-biased to VCMI through 1e9 H inductors. Ideal baluns and iprobe
+//        ipdm measure the differential-mode loop.
+//  xol : Open-loop gain instance with direct input bias and differential AC
+//        excitation. Each output is loaded by 860 fF.
+//  xsw : Resistive-feedback gain-of-eight instance for positive and negative
+//        maximum-residue operating points and loop-stability checks.
+//  balun_dc uses ideal VCVS and CCCS elements as testbench instrumentation.
+// ============================================================================
+// Testbench parameters are declared at the top of this deck.
+simulator lang=spectre
+
+// ---- Ideal differential/common-mode balun ---------------------------------
+subckt balun_dc (d c p n)
+  vsp (p px) vsource dc=0
+  vsn (n nx) vsource dc=0
+  ep  (px c d 0) vcvs gain=0.5
+  en  (nx c d 0) vcvs gain=-0.5
+  fd1 (0 d) cccs probe=vsp gain=0.5
+  fd2 (d 0) cccs probe=vsn gain=0.5
+ends balun_dc
+
+// ---- Supply and common nodes ----------------------------------------------
+vdd_s (vddn 0) vsource dc=vddval
+vcmis (vcmi 0) vsource dc=vcmival
+
+// ============================================================================
+// Instance 1: closed-loop MDAC configuration xcl
+// ============================================================================
+ib1   (vddn ibn1) isource dc=20u
+vrst0 (prst0 0) vsource dc=0
+xcl   (vddn 0 sna snb outp outn ibn1 prst0) ota_core
+
+// Bottom-plate excitation. vres_a is the noise input reference source.
+vbcma (bpma 0)   vsource dc=vcmival
+vbcmb (bpmb 0)   vsource dc=vcmival
+vres_a (bpa bpma) vsource dc=vres/2  mag=0.5
+vres_b (bpb bpmb) vsource dc=-vres/2 mag=-0.5
+
+// CDAC sampling capacitors; the bottom plates are at AC ground.
+csa (bpa sna) capacitor c=csv
+csb (bpb snb) capacitor c=csv
+
+// Summing-node DC bias. A 1e9 H inductor is a DC short and an AC open.
+lba (sna vcmi) inductor l=1e9
+lbb (snb vcmi) inductor l=1e9
+
+// Differential-loop path: outputs -> balun -> ipdm -> balun -> feedback caps.
+xbal1 (dm1 cmm outp outn) balun_dc
+ipdm  (dm1 dm2) iprobe
+xbal2 (dm2 cmm fbp fbn) balun_dc
+cfa (sna fbn) capacitor c=cfv
+cfb (snb fbp) capacitor c=cfv
+
+// Output load.
+clp (outp 0) capacitor c=clv
+cln (outn 0) capacitor c=clv
+
+// ============================================================================
+// Instance 2: open-loop gain measurement xol
+// ============================================================================
+ib2   (vddn ibn2) isource dc=20u
+xol   (vddn 0 olip olin olop olon ibn2 prst0) ota_core
+volp  (olip 0) vsource dc=vcmival mag=0.5
+voln  (olin 0) vsource dc=vcmival mag=-0.5
+clop  (olop 0) capacitor c=860f
+clon  (olon 0) capacitor c=860f
+
+// ============================================================================
+// Instance 3: resistive-feedback swing instance xsw with DC gain of -8
+// ============================================================================
+ib3   (vddn ibn3) isource dc=20u
+xsw   (vddn 0 snaw snbw outpw outnw ibn3 prst0) ota_core
+vswa  (swa 0) vsource dc=vcmival+vswing/2
+vswb  (swb 0) vsource dc=vcmival-vswing/2
+rsa_w (swa snaw) resistor r=rsv
+rsb_w (swb snbw) resistor r=rsv
+xbal3 (dm1w cmmw outpw outnw) balun_dc
+ipdmw (dm1w dm2w) iprobe
+xbal4 (dm2w cmmw fbpw fbnw) balun_dc
+rfa_w (snaw fbnw) resistor r=rfv
+rfb_w (snbw fbpw) resistor r=rfv
+// Parallel capacitors preserve the high-frequency dynamics of the MDAC while
+// the resistors define the DC operating point.
+cs_wa (snaw vcmi) capacitor c=csv
+cs_wb (snbw vcmi) capacitor c=csv
+cf_wa (snaw fbnw) capacitor c=cfv
+cf_wb (snbw fbpw) capacitor c=cfv
+clpw  (outpw 0) capacitor c=clv
+clnw  (outnw 0) capacitor c=clv
+
+// ==================== analyses =====================
+simulatorOptions options psfversion="1.4.0" reltol=1e-4 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3
+
+dcop dc maxiters=200 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+
+ac1 ac start=100 stop=50G dec=25 annotate=status
+noise1 (outp outn) noise start=1k stop=20G dec=20 iprobe=vres_a annotate=status
+
+stbdm  stb start=1k stop=50G dec=20 probe=ipdm  annotate=status
+stbcm1 stb start=1k stop=50G dec=20 probe=xcl.ipcm1 annotate=status
+stbcm2 stb start=1k stop=50G dec=20 probe=xcl.ipcm2 annotate=status
+stbbst stb start=1k stop=50G dec=20 probe=xcl.ipbsta annotate=status
+
+// Positive and negative maximum-residue operating points and loop stability.
+altp alter param=vswing value=56.25m
+dcswp dc maxiters=200 annotate=status
+opswp info what=oppoint where=rawfile
+stbswp stb start=1k stop=50G dec=20 probe=ipdmw annotate=status
+altn alter param=vswing value=-56.25m
+dcswn dc maxiters=200 annotate=status
+opswn info what=oppoint where=rawfile
+stbswn stb start=1k stop=50G dec=20 probe=ipdmw annotate=status
+
+save vdd_s:p outp outn sna snb \
+    xcl.stage1_out_p xcl.stage1_out_n xcl.fold_node_p xcl.fold_node_n \
+    xcl.input_pair_source xcl.cmfb1_control xcl.cmfb2_control \
+    xcl.fold_voltage_ref xcl.stage1_cm_ref xcl.n_cascode_bias \
+    xcl.n_cascode_bias_source xcl.pboost_p_amp_out xcl.pboost_n_amp_out \
+    xcl.p_cascode_gate_p xcl.p_cascode_gate_n xcl.n_cascode_source_p \
+    xcl.n_cascode_source_n xcl.cmfb2_sense_shifted xcl.cmfb2_ref_shifted \
+    xcl.pboost_p_sf_out xcl.p_bias_ref xcl.p_top_bias xcl.pboost_p_tail \
+    xcl.miller_zero_p xcl.cmfb1_sense_drain xcl.cmfb1_ref_drain \
+    xcl.cmfb1_p_sense_source \
+    outpw outnw snaw snbw olop olon
+saveOptions options save=selected

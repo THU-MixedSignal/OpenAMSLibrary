@@ -9,7 +9,7 @@ files from another numbered directory.
 
 | Number | Circuit | Technology | Entry point |
 | --- | --- | --- | --- |
-| [`001`](001/) | Fully differential MDAC OTA | TSMC 28 nm, 0.9 V | `001/run-spectre.sh` |
+| [`001`](001/) | Fully differential MDAC OTA; compact and full-geometry netlists | TSMC 28 nm, 0.9 V | `001/run-spectre.sh` |
 
 Proprietary PDK files are never included. Users must supply model files from
 their own licensed PDK installation.

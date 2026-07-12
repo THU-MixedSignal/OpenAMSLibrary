@@ -2,22 +2,33 @@
 set -euo pipefail
 
 usage() {
-  printf 'Usage: %s {ac|tran} [spectre|aps|cx|ax|mx|lx|vx]\n' "$0"
-  printf 'Default mode: cx\n'
+  printf 'Usage: %s {ac|tran} [full|simple] [spectre|aps|cx|ax|mx|lx|vx]\n' "$0"
+  printf 'Defaults: variant=full, mode=cx\n'
 }
 
-if [[ $# -lt 1 || $# -gt 2 ]]; then
+if [[ $# -lt 1 || $# -gt 3 ]]; then
   usage >&2
   exit 2
 fi
 
 analysis="$1"
-mode="${2:-cx}"
+variant="${2:-full}"
+mode="${3:-cx}"
 
 case "$analysis" in
   ac|tran) ;;
   *)
     printf 'Unsupported analysis: %s\n' "$analysis" >&2
+    usage >&2
+    exit 2
+    ;;
+esac
+
+case "$variant" in
+  full) deck_suffix="_full_geometry" ;;
+  simple) deck_suffix="" ;;
+  *)
+    printf 'Unsupported DUT variant: %s\n' "$variant" >&2
     usage >&2
     exit 2
     ;;
@@ -36,8 +47,9 @@ case "$mode" in
 esac
 
 root_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-deck="$root_dir/$analysis.scs"
-output_dir="$root_dir/results/${analysis}_${mode}"
+deck="$root_dir/${analysis}${deck_suffix}.scs"
+testbench="$root_dir/tb_${analysis}.scs"
+output_dir="$root_dir/results/${analysis}_${variant}_${mode}"
 raw_dir="$output_dir/$analysis.raw"
 log_file="$output_dir/spectre.log"
 
@@ -46,8 +58,8 @@ if ! command -v spectre >/dev/null 2>&1; then
   exit 127
 fi
 
-if grep -q '/path/to/your/TSMC28_PDK/' "$deck"; then
-  printf 'Edit the PDK paths near the top of %s before running.\n' "$deck" >&2
+if grep -q '/path/to/your/TSMC28_PDK/' "$testbench"; then
+  printf 'Edit the PDK paths near the top of %s before running.\n' "$testbench" >&2
   exit 2
 fi
 

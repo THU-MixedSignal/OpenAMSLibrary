@@ -1,0 +1,4 @@
+// Full CDF-geometry DUT with the shared AC/STB/noise testbench.
+simulator lang=spectre
+include "ota_core_full_geometry.scs"
+include "tb_ac.scs"

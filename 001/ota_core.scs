@@ -66,7 +66,7 @@ rbnc   (n_cascode_bias_source vss) resistor r=9.5k
 
 // Replica of the second-stage NMOS gate voltage. This is the target common-mode
 // voltage for the first-stage outputs.
-mbps1  (stage1_cm_ref p_bias_ref vdd vdd) pch_ulvt_mac l=300n w=21u multi=1 nf=9
+mbps1  (stage1_cm_ref p_bias_ref vdd vdd) pch_ulvt_mac l=300n w=21u multi=1 nf=10
 mrep2  (stage1_cm_ref stage1_cm_ref vss vss) nch_ulvt_mac l=100n w=2.15u multi=1 nf=1
 
 // =============================================================================
@@ -128,8 +128,8 @@ ipbstb (pboost_n_sf_out p_cascode_gate_n) iprobe
 // Two-terminal passive instances use: (terminal_1, terminal_2).
 // =============================================================================
 
-mn2a   (out_p stage1_out_p vss vss) nch_ulvt_mac l=100n w=43u multi=1 nf=23
-mn2b   (out_n stage1_out_n vss vss) nch_ulvt_mac l=100n w=43u multi=1 nf=23
+mn2a   (out_p stage1_out_p vss vss) nch_ulvt_mac l=100n w=43u multi=1 nf=20
+mn2b   (out_n stage1_out_n vss vss) nch_ulvt_mac l=100n w=43u multi=1 nf=20
 mp2a   (out_p cmfb2_load_gate vdd vdd) pch_ulvt_mac l=150n w=52u multi=1 nf=26
 mp2b   (out_n cmfb2_load_gate vdd vdd) pch_ulvt_mac l=150n w=52u multi=1 nf=26
 
