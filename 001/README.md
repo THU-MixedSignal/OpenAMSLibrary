@@ -67,10 +67,9 @@ is the full-geometry median relative to the compact median.
 
 ![PVT compact versus full-geometry distributions](figures/compact_vs_full_pvt_boxplots.png)
 
-The PVT comparison reuses 17 existing points that are complete for both
-netlists. The matched subset spans all five MOS process groups, all three
-temperatures, and all three supply voltages, but it is not the full Cartesian
-45-point matrix. Each dot is one simulated PVT point; each box summarizes the
+The PVT comparison contains the complete matched 45-point matrix for both
+netlists: five MOS process groups, three temperatures, and three supply
+voltages. Each dot is one simulated PVT point; each box summarizes the
 corresponding distribution.
 
 These figures compare two schematic device descriptions. The full-geometry
