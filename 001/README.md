@@ -62,14 +62,8 @@ excluded from Git. The committed reference condition is TT, 27 C, and 0.9 V.
 
 Both netlists were simulated with the same model sections, testbenches, solver
 settings, and loading. In every panel below, compact W/L/nf is on the left and
-full schematic CDF geometry is on the right.
-
-![Nominal compact versus full-geometry metrics](figures/compact_vs_full_nominal.png)
-
-The nominal comparison is TT, 27 C, and 0.90 V. The full-geometry description
-raises unity-gain bandwidth and differential-loop phase margin, while also
-raising supply power. DC gain, closed-loop gain error, and integrated output
-noise remain close.
+full schematic CDF geometry is on the right. The percentage in each panel title
+is the full-geometry median relative to the compact median.
 
 ![PVT compact versus full-geometry distributions](figures/compact_vs_full_pvt_boxplots.png)
 
